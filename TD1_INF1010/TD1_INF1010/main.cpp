@@ -34,14 +34,14 @@ int main() {
 	
 
 	//afficher le restaurant
-	poly.afficher(); 
+	////////////////////////////////poly.afficher(); 
 
 	cout << "-------------------------------------------------" << endl; 
 
 	//liberer les tables 
 
 	//afficher le restaurant 
-	poly.afficher(); 
+	/////////////////////////////////poly.afficher(); 
 	return 0;
 
 }
