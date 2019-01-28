@@ -144,15 +144,15 @@ void Restaurant::placerClients(int nbClients){
 void Restaurant::afficher(){
 
 	cout << "Le restaurant PolyFood a fait un pofit de: ", chiffreAffaire_, "$";
-	cout << "Les tables et leur disponibilite: ";// endl;
+	cout << "Les tables et leur disponibilite: " << endl;
 	for (int i = 0; i < nbTables_; i++) {
 		
 		cout << "La table numero ", i + 1, " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
 		if (tables_[i]->estOccupee) {
-			cout << "libre." ;// endl;
+			cout << "libre."<<endl ;
 		}
 		else {
-			cout << "prises." ;// endl; ////// mark: felix je sais pas comment conjuguer prise
+			cout << "prises." << endl; ////// mark: felix je sais pas comment conjuguer prise
 		}
 
 
