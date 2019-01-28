@@ -155,6 +155,7 @@ bool Menu::lireMenu(string& fichier)
 		} while (type != "TABLES");
 		break;
 	}
+	ficLire.close;
 }
 
 /*
