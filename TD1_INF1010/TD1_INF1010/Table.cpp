@@ -37,7 +37,7 @@ Table::Table(int id, int nbPlaces)
 	occupee_ = false;
 	commande_ = new Plat*[capacite_];
 	for (int i = 0; i < capacite_; i++)
-		commande_[i] = nullptr; // felix: methode de lecture??
+		commande_[i] = nullptr; // felix: methode de lecture?? ------------------> mark: non c bon c dans la fonction que tu va ajouter des plats mais y faut qui y aille une liste
 	// felix: lireMenu() //wtf???
 }
 
@@ -58,7 +58,7 @@ bool Table::estOccupee()
 
 void Table::libererTable()
 {
-	delete[] commande_;
+	//delete[] commande_; ------------> mark: je pense que c juste la deuxieme affaire on va delete la liste mais qu elle aille rien pour quand les prochain client vont mettre des affaire dedans
 	for (int i = 0; i < capacite_; i++)
 		commande_[i] = nullptr; // felix: qu est ce qu il faut effacer
 	occupee_ = false;
@@ -66,7 +66,7 @@ void Table::libererTable()
 
 void Table::placerClient()
 {
-	occupee_ = true; //   felix: dont know wtf is going on here...
+	occupee_ = true; //   felix: dont know wtf is going on here... -----------> mark c bon
 }
 
 void Table::setId(int id)
