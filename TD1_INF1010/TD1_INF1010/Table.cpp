@@ -60,7 +60,7 @@ void Table::libererTable()
 {
 	//delete[] commande_; ------------> mark: je pense que c juste la deuxieme affaire on va delete la liste mais qu elle aille rien pour quand les prochain client vont mettre des affaire dedans
 	for (int i = 0; i < capacite_; i++)
-		commande_[i] = nullptr; // felix: qu est ce qu il faut effacer
+		commande_[i] = nullptr; // felix: qu est ce qu il faut effacer --------> mark: check en haut
 	occupee_ = false;
 }
 
