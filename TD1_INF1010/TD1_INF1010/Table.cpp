@@ -37,8 +37,8 @@ Table::Table(int id, int nbPlaces)
 	occupee_ = false;
 	commande_ = new Plat*[capacite_];
 	for (int i = 0; i < capacite_; i++)
-		commande_[i] = nullptr; //methode de lecture??
-	//lireMenu() //wtf???
+		commande_[i] = nullptr; // felix: methode de lecture??
+	// felix: lireMenu() //wtf???
 }
 
 int Table::getId()
@@ -53,20 +53,20 @@ int Table::getNbPlaces()
 
 bool Table::estOccupee()
 {
-	return occupee_;
+	return occupee_; 
 }
 
 void Table::libererTable()
 {
 	delete[] commande_;
 	for (int i = 0; i < capacite_; i++)
-		commande_[i] = nullptr; // qu est ce qu il faut effacer
+		commande_[i] = nullptr; // felix: qu est ce qu il faut effacer
 	occupee_ = false;
 }
 
 void Table::placerClient()
 {
-	occupee_ = true; //dont know wtf is going on here...
+	occupee_ = true; //   felix: dont know wtf is going on here...
 }
 
 void Table::setId(int id)

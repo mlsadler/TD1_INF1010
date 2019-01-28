@@ -156,42 +156,10 @@ bool Menu::lireMenu(string& fichier)
 		break;
 	}
 	ficLire.close;
+	///////////ne pas oublier de mettre le return si la lectur fonctionne
 }
 
-/*
-bool Menu::lireMenu(string& fichier)
-{
-	ifstream ficLire(fichier);
-	string nom, typeString;
-	double montant, cout;
-	bool finBoucle=true;
 
-	switch (type_) { 
-	case 0:
-		typeString = "MATIN";
-		break;
-	case 1:
-		typeString = "MIDI";
-		break;
-	case 2:
-		typeString = "SOIR";
-			break;
-	}
-	
-	while (finBoucle) {
-		ficLire >> nom;
-		if (nom[0] == '-')
-			nom = nom.substr(1, nom.size() - 1);
-			if (nom == typeString) {
-				finBoucle = false;
-			}
-	}
-
-
-
-	
-}
-*/
 
 
 
