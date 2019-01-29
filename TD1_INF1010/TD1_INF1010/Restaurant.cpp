@@ -83,6 +83,7 @@ void Restaurant::lireTable(string & fichier){
 		ajouterTable(id, nbPlaces);
 		
 	}
+	ficLire.close;
 }
 
 void Restaurant::ajouterTable(int id, int nbPlaces){
