@@ -99,8 +99,8 @@ double Table::getChiffreAffaire()
 {
 	double coutTotal = 0, prixTotal = 0;
 	for (int i = 0; i < capacite_; i++) {
-		coutTotal += commande_[i]->getCout();
-		prixTotal += commande_[i]->getPrix();
+		coutTotal += commande_[i]->getCout;
+		prixTotal += commande_[i]->getPrix;
 	}
 	double chiffreAffaire = prixTotal - coutTotal;
 	return chiffreAffaire;
@@ -112,7 +112,7 @@ void Table::afficher()
 		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est occupée.";
 		cout << endl << "Voici la commande des clients: " << endl;
 		for (int i = 0; i < nbPlats_; i++) 
-			commande_[i]->afficher();
+			commande_[i]->afficher;
 	}
 	else {
 		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est libre.";
