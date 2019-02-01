@@ -37,28 +37,28 @@ Menu::Menu(string fichier, TypeMenu type)
 }
 
 
-int Menu::getNbPlats() 
+int Menu::getNbPlats() const
 {
 	return nbPlats_;
 }
 
-void Menu::afficher() 
+void Menu::afficher() const
 {
 	cout << "Voici ce qu'il y a sur le menu: " << endl;
 	for (int i = 0; i < getNbPlats(); i++) 
 		listePlats_[i]->afficher();
 }
 
-Plat* Menu::trouverPlat(string& nom) 
+Plat* Menu::trouverPlat(const string& nom) const
 {
 	for (int i = 0; i < nbPlats_; i++) {
-		if (listePlats_[i]->getNom == nom) 
+		if (listePlats_[i]->getNom() == nom) 
 			return listePlats_[i];
 	}
 	return nullptr;
 }
 
-void Menu::ajouterPlat(Plat& plat) 
+void Menu::ajouterPlat(Plat& plat)
 {
 	if (nbPlats_ == capacite_) {
 		Plat** copieListe = new Plat*[capacite_];
@@ -71,25 +71,27 @@ void Menu::ajouterPlat(Plat& plat)
 			listePlats_[i] = copieListe[i];
 		for (int i = (capacite_/2); i < capacite_; i++)
 			listePlats_[i] = nullptr;
-		delete[] copieListe;
+		
 		for (int i = 0; i < (capacite_ / 2); i++)
 			copieListe[i] = nullptr;
+		delete[] copieListe;
 	}
 	listePlats_[nbPlats_] = &plat;
 	nbPlats_++;	
 }
 
-void Menu::ajouterPlat(string& nom, double montant, double cout) 
+void Menu::ajouterPlat(const string& nom, double montant, double cout)
 {
 	Plat plat=Plat(nom, montant, cout);
 	ajouterPlat(plat);
 }
 
-bool Menu::lireMenu(string& fichier) 
+bool Menu::lireMenu(const string& fichier)
 {
 	ifstream ficLire (fichier);
 	string nom, type = "";
 	double montant, cout;
+	bool lectureEffectuee = false;
 
 	switch (type_) {
 	case (Matin):
@@ -112,6 +114,7 @@ bool Menu::lireMenu(string& fichier)
 				 ajouterPlat(nom, montant, cout);
 			 }
 		 } while (type != "MIDI");
+		 return lectureEffectuee;
 		 break;
 	case (Midi):
 
@@ -133,6 +136,7 @@ bool Menu::lireMenu(string& fichier)
 				ajouterPlat(nom, montant, cout);
 			}
 		} while (type != "SOIR");
+		return lectureEffectuee;
 		break;
 	case (Soir):
 		do {
@@ -153,13 +157,20 @@ bool Menu::lireMenu(string& fichier)
 				ajouterPlat(nom, montant, cout);
 			}
 		} while (type != "TABLES");
+		return lectureEffectuee;
 		break;
 	}
-	ficLire.close;
-	///////////ne pas oublier de mettre le return si la lectur fonctionne
+	ficLire.close();
+	lectureEffectuee = false;
+	return lectureEffectuee;
 }
 
-
+Menu::~Menu()
+{
+	for (int i = 0; i < (capacite_); i++)
+		listePlats_[i] = nullptr;
+	delete[] listePlats_;
+}
 
 
 
