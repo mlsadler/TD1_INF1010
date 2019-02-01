@@ -5,11 +5,11 @@ Restaurant::Restaurant() {
 	*nom_ = "inconnu";
 	momentJournee_ = Matin;
 	chiffreAffaire_ = 0;
-	*menuMatin_ = nullptr; ////////// vrm pas sur quoi mettre pour tout le reste
+	menuMatin_ = nullptr; ////////// vrm pas sur quoi mettre pour tout le reste
 				//--------->félix: pt un constructeur par defaukt de menu ou rajouter etoile devant menuMatin_ pasque ptr
-	//*menuMatin_ = Menu();********
-	*menuMidi_ = nullptr;
-	*menuSoir_ = nullptr;
+	*menuMatin_ = Menu();//********
+	menuMidi_ = nullptr;
+	menuSoir_ = nullptr;
 	capaciteTables_ = 0;
 	nbTables_ = 0;
 	tables_ = new Table* [INTTABLES];
@@ -70,7 +70,7 @@ void Restaurant::lireTable(string & fichier){
 		ficLire >> nom;
 		if (nom[0] == '-')
 			nom = nom.substr(1, nom.size() - 1);
-	}while (nom != "TABLES") //jai modifié cette loop
+	} while (nom != "TABLES"); //jai modifié cette loop
 
 	while (!ws(ficLire).eof()) {
 		ficLire >> id >> nbPlaces;
@@ -84,7 +84,7 @@ void Restaurant::lireTable(string & fichier){
 
 void Restaurant::ajouterTable(int id, int nbPlaces){
 
-	*tables_[id-1]= &Table(id, nbPlaces);/////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
+	tables_[id-1]= &Table(id, nbPlaces);/////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????****etoile?
 
 	 
 }
