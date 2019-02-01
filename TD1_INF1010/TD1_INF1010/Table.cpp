@@ -87,10 +87,9 @@ void Table::commander(Plat* plat)
 			commande_[i] = copieCommande[i];
 		for (int i = (capacite_ / 2); i < capacite_; i++)
 			commande_[i] = nullptr;
-		
+		delete[] copieCommande;
 		for (int i = 0; i < (capacite_ / 2); i++)
 			copieCommande[i] = nullptr;
-		delete[] copieCommande;
 	}
 	commande_[nbPlats_] = plat;
 	nbPlats_++;
@@ -120,12 +119,4 @@ void Table::afficher()
 		cout << endl;
 	}
 
-}
-
-
-Table::~Table()
-{
-	for (int i = 0; i < (capacite_ ); i++)
-		commande_[i] = nullptr;
-	delete[] commande_;
 }

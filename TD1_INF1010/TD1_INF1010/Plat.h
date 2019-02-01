@@ -30,9 +30,6 @@ public:
 	//affichage
 	void afficher(); 
 
-	//destructeur
-	~Plat();
-
 private: 
 	string nom_; 
 	double prix_; 
