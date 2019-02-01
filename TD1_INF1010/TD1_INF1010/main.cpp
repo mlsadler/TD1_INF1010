@@ -11,7 +11,8 @@ using namespace std;
 int main() {
 
 	//creation du restaurant - avec le fichier donne - le nom : PolyFood - moment de la journee : soir. 
-	Menu("polyFood.txt", Soir);
+
+	Restaurant("polyfood.txt", "PolyFood", Soir);
 
 
 	//creer plusieurs clients -- des entiers 
