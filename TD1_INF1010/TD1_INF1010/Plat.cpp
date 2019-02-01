@@ -1,8 +1,7 @@
 /****************************************************************************
- * Fichier: Point.h
- * Auteur: Georges Abou-Khalil
- * Date: 2 sept 2008
- * Mise a jour : 11 mai 2011
+ * Fichier: Plat.h
+ * Auteur: Mark Weber-Sadler() et Félix Dumont(1954787)
+ * Date: 4 février 2019
  * Description: Implémentation de la classe Point
  ****************************************************************************/
 

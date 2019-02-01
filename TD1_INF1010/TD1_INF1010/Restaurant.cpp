@@ -5,9 +5,11 @@ Restaurant::Restaurant() {
 	*nom_ = "inconnu";
 	momentJournee_ = Matin;
 	chiffreAffaire_ = 0;
-	menuMatin_ = nullptr; ////////// vrm pas sur quoi mettre pour tout le reste
-	menuMidi_ = nullptr;
-	menuSoir_ = nullptr;
+	*menuMatin_ = nullptr; ////////// vrm pas sur quoi mettre pour tout le reste
+				//--------->félix: pt un constructeur par defaukt de menu ou rajouter etoile devant menuMatin_ pasque ptr
+	//*menuMatin_ = Menu();********
+	*menuMidi_ = nullptr;
+	*menuSoir_ = nullptr;
 	capaciteTables_ = 0;
 	nbTables_ = 0;
 	tables_ = new Table* [INTTABLES];
@@ -25,7 +27,7 @@ Restaurant::Restaurant(string& fichier, string& nom, TypeMenu moment) {
 	
 	switch (moment) {
 	case 0:
-		menuMatin_ = &Menu(fichier, moment);
+		menuMatin_ = &Menu(fichier, moment); //mettre une etoile devant??
 		break;
 	case 1:
 		menuMidi_ = &Menu(fichier, moment);
@@ -41,8 +43,6 @@ Restaurant::Restaurant(string& fichier, string& nom, TypeMenu moment) {
 	nbTables_ = 0;
 	capaciteTables_ = 0;
 	lireTable(fichier);
-	
-	 
 }
 
 void Restaurant::setMoment(TypeMenu moment) {
@@ -63,18 +63,14 @@ TypeMenu Restaurant::getMoment() {
 void Restaurant::lireTable(string & fichier){
 	ifstream ficLire (fichier);
 	string nom;
-	bool finBoucle = true;
 	int id;
 	unsigned int nbPlaces;
 
-	while (finBoucle) {
+	do {
 		ficLire >> nom;
 		if (nom[0] == '-')
 			nom = nom.substr(1, nom.size() - 1);
-		if (nom == "TABLES") {
-			finBoucle = false;
-		}
-	}
+	}while (nom != "TABLES") //jai modifié cette loop
 
 	while (!ws(ficLire).eof()) {
 		ficLire >> id >> nbPlaces;
@@ -88,7 +84,7 @@ void Restaurant::lireTable(string & fichier){
 
 void Restaurant::ajouterTable(int id, int nbPlaces){
 
-	tables_[id-1]= &Table(id, nbPlaces);/////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
+	*tables_[id-1]= &Table(id, nbPlaces);/////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
 
 	 
 }
@@ -121,20 +117,18 @@ void Restaurant::placerClients(int nbClients){
 	int id, nbPlaceLibre = INFINITY;
 	bool tableTrouver=false;
 
-	for (int i = 0; i < nbTables_; i++) {
-		if (tables_[i]->estOccupee == false) {
-			if (tables_[i]->getNbPlaces >= nbClients) {
+	for (int i = 0; i < nbTables_; i++) 
+		if (tables_[i]->estOccupee == false) 
+			if (tables_[i]->getNbPlaces >= nbClients) 
 				if (nbPlaceLibre > tables_[i]->getNbPlaces - nbClients) {
 					id = tables_[i]->getId;
 					nbPlaceLibre = tables_[i]->getNbPlaces - nbClients;
 					tableTrouver = true;
 				}
-			}
-		}
-	}
-	if (tableTrouver) {
+
+	if (tableTrouver) 
 		tables_[id - 1]->placerClient;
-	}
+	
 	else {
 		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table.";
 	}
@@ -153,7 +147,9 @@ void Restaurant::afficher(){
 			cout << "libre."<<endl ;
 		}
 		else {
-			cout << "prises." << endl; ////// mark: felix je sais pas comment conjuguer prise
+			cout << "prise." << endl; ////// mark: felix je sais pas comment conjuguer prise
+			//////felix: mark...get goood!!!!! pas de s car cest une table
+			//
 		}
 
 
