@@ -14,7 +14,7 @@ int main() {
 	//creation du restaurant - avec le fichier donne - le nom : PolyFood - moment de la journee : soir. 
 	string fichier = "polyfood.txt";
 	string nomRestaurant = "PolyFood";
-	Restaurant polyfood (fichier, nomRestaurant, Soir);
+	Restaurant polyfood ("Polyfood.txt", nomRestaurant, Soir);
 
 
 	//creer plusieurs clients -- des entiers 
