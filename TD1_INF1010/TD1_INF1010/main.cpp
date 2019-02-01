@@ -41,23 +41,29 @@ int main() {
 	//Poulet - Table 4
 	//Muffin - Table 4 
 	//Oeuf - Table 4 
-	polyfood.commanderPlat("Poisson", 1);
-	polyfood.commanderPlat("Poulet", 2);
-	polyfood.commanderPlat("Pizza", 2);
-	polyfood.commanderPlat("Poulet", 4);
-	polyfood.commanderPlat("Muffin", 4);
-	polyfood.commanderPlat("Oeuf", 4);
+	string poisson = "Poisson", poulet = "Poulet", pizza = "pizza", muffin = "muffin", oeuf = "oeuf";
+	polyfood.commanderPlat(poisson, 1);
+	polyfood.commanderPlat(poulet, 2);
+	polyfood.commanderPlat(pizza, 2);
+	polyfood.commanderPlat(poulet, 4);
+	polyfood.commanderPlat(muffin, 4);
+	polyfood.commanderPlat(oeuf, 4);
 	
 
 	//afficher le restaurant
 	////////////////////////////////poly.afficher(); 
+	polyfood.afficher();
 
 	cout << "-------------------------------------------------" << endl; 
 
-	//liberer les tables 
+	//liberer les tables
+	for (int i = 0; i< 4; i++)
+		polyfood.libererTable(i);
+	
 
 	//afficher le restaurant 
 	/////////////////////////////////poly.afficher(); 
+	polyfood.afficher();
 	return 0;
 
 }
