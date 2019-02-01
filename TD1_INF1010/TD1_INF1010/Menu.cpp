@@ -52,7 +52,7 @@ void Menu::afficher()
 Plat* Menu::trouverPlat(string& nom) 
 {
 	for (int i = 0; i < nbPlats_; i++) {
-		if (listePlats_[i]->getNom() == nom) 
+		if (listePlats_[i]->getNom == nom) 
 			return listePlats_[i];
 	}
 	return nullptr;
@@ -91,7 +91,6 @@ bool Menu::lireMenu(string& fichier)
 	ifstream ficLire (fichier);
 	string nom, type = "";
 	double montant, cout;
-	bool lectureEffectuee = false;
 
 	switch (type_) {
 	case (Matin):
@@ -114,7 +113,6 @@ bool Menu::lireMenu(string& fichier)
 				 ajouterPlat(nom, montant, cout);
 			 }
 		 } while (type != "MIDI");
-		 return lectureEffectuee;
 		 break;
 	case (Midi):
 
@@ -136,7 +134,6 @@ bool Menu::lireMenu(string& fichier)
 				ajouterPlat(nom, montant, cout);
 			}
 		} while (type != "SOIR");
-		return lectureEffectuee;
 		break;
 	case (Soir):
 		do {
@@ -157,12 +154,10 @@ bool Menu::lireMenu(string& fichier)
 				ajouterPlat(nom, montant, cout);
 			}
 		} while (type != "TABLES");
-		return lectureEffectuee;
 		break;
 	}
-	ficLire.close();
-	lectureEffectuee = false;
-	return lectureEffectuee;
+	ficLire.close;
+	///////////ne pas oublier de mettre le return si la lectur fonctionne
 }
 
 Menu::~Menu()

@@ -77,7 +77,7 @@ void Restaurant::lireTable(string & fichier){
 		ajouterTable(id, nbPlaces);
 		
 	}
-	ficLire.close();
+	ficLire.close;
 }
 
 void Restaurant::ajouterTable(int id, int nbPlaces){
@@ -89,8 +89,8 @@ void Restaurant::ajouterTable(int id, int nbPlaces){
 
 void Restaurant::libererTable(int id){//////////// dans la fonction j assume que la liste est toujours assez grande 
 
-	chiffreAffaire_+= tables_[id - 1]->getChiffreAffaire();
-	tables_[id - 1]->libererTable();
+	chiffreAffaire_+= tables_[id - 1]->getChiffreAffaire;
+	tables_[id - 1]->libererTable;
 	
 }
 
@@ -116,16 +116,16 @@ void Restaurant::placerClients(int nbClients){
 	bool tableTrouver=false;
 
 	for (int i = 0; i < nbTables_; i++) 
-		if (tables_[i]->estOccupee() == false) 
-			if (tables_[i]->getNbPlaces() >= nbClients) 
-				if (nbPlaceLibre > tables_[i]->getNbPlaces() - nbClients) {
-					id = tables_[i]->getId();
-					nbPlaceLibre = tables_[i]->getNbPlaces() - nbClients;
+		if (tables_[i]->estOccupee == false) 
+			if (tables_[i]->getNbPlaces >= nbClients) 
+				if (nbPlaceLibre > tables_[i]->getNbPlaces - nbClients) {
+					id = tables_[i]->getId;
+					nbPlaceLibre = tables_[i]->getNbPlaces - nbClients;
 					tableTrouver = true;
 				}
 
 	if (tableTrouver) 
-		tables_[id - 1]->placerClient();
+		tables_[id - 1]->placerClient;
 	
 	else {
 		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table.";
@@ -141,7 +141,7 @@ void Restaurant::afficher(){
 	for (int i = 0; i < nbTables_; i++) {
 		
 		cout << "La table numero ", i + 1, " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
-		if (tables_[i]->estOccupee()) {
+		if (tables_[i]->estOccupee) {
 			cout << "libre."<<endl ;
 		}
 		else {
