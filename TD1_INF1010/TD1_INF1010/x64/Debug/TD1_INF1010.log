@@ -1,0 +1,29 @@
+﻿  main.cpp
+  Menu.cpp
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(24): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(65): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(70): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(75): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\menu.cpp(170): warning C4018: '<': signed/unsigned mismatch
+  Plat.cpp
+  Restaurant.cpp
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(87): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(124): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(127): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(150): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(173): warning C4018: '<': signed/unsigned mismatch
+  Table.cpp
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(27): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(39): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(62): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(81): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(86): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(88): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(91): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(102): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(115): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\table.cpp(128): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  TD1_INF1010.vcxproj -> C:\Users\mark\Documents\school\Hiver 2019\INF1010\TD\TD1_INF1010\TD1_INF1010\x64\Debug\TD1_INF1010.exe

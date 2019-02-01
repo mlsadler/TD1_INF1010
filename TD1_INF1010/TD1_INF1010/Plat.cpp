@@ -30,18 +30,18 @@ Plat::Plat(string nom, double prix, double cout)
 }
 
 
-string Plat::getNom()
+string Plat::getNom() const
 {
 	return nom_;
 }
 
 
-double Plat::getPrix() 
+double Plat::getPrix() const
 {
 	return prix_;
 }
 
-double Plat::getCout()
+double Plat::getCout() const
 {
 	return cout_;
 }
@@ -56,12 +56,13 @@ void Plat::setPrix(double prix)
 	prix_ = prix;
 }
 
-void Plat::afficher()
+void Plat::afficher() const
 {
 	cout << "Le nom du plat est ", nom_, " avec un prix de ", prix_, " associer avec un coup de ", cout_, '.';
 	cout << endl;
 }
 
+Plat::~Plat(){}
 
 
 
