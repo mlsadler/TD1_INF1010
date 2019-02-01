@@ -32,6 +32,9 @@ public:
 	//affichage 
 	void afficher();
 
+	//destructeur
+	~Restaurant();
+
 private: 
 	string* nom_; 
 

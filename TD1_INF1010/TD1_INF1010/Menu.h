@@ -30,6 +30,9 @@ public:
 	void ajouterPlat(Plat & plat); 
 	void ajouterPlat(string& nom, double montant, double cout); 
 	bool lireMenu(string& fichier); 
+
+	//destructeur
+	~Menu();
 	
 private : 
 	unsigned int capacite_;

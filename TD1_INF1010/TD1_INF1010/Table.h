@@ -31,6 +31,9 @@ public:
 
 	//affichage
 	void afficher(); 
+
+	//destructeur
+	~Table();
 private : 
 	Plat** commande_; 
 	unsigned int capacite_; 

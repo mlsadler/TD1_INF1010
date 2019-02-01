@@ -71,9 +71,10 @@ void Menu::ajouterPlat(Plat& plat)
 			listePlats_[i] = copieListe[i];
 		for (int i = (capacite_/2); i < capacite_; i++)
 			listePlats_[i] = nullptr;
-		delete[] copieListe;
+		
 		for (int i = 0; i < (capacite_ / 2); i++)
 			copieListe[i] = nullptr;
+		delete[] copieListe;
 	}
 	listePlats_[nbPlats_] = &plat;
 	nbPlats_++;	
@@ -164,7 +165,12 @@ bool Menu::lireMenu(string& fichier)
 	return lectureEffectuee;
 }
 
-
+Menu::~Menu()
+{
+	for (int i = 0; i < (capacite_); i++)
+		listePlats_[i] = nullptr;
+	delete[] listePlats_;
+}
 
 
 

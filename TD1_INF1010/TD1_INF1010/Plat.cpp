@@ -62,6 +62,7 @@ void Plat::afficher()
 	cout << endl;
 }
 
+Plat::~Plat(){}
 
 
 

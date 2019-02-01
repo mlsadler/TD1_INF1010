@@ -5,11 +5,9 @@ Restaurant::Restaurant() {
 	*nom_ = "inconnu";
 	momentJournee_ = Matin;
 	chiffreAffaire_ = 0;
-	menuMatin_ = nullptr; ////////// vrm pas sur quoi mettre pour tout le reste
-				//--------->félix: pt un constructeur par defaukt de menu ou rajouter etoile devant menuMatin_ pasque ptr
-	*menuMatin_ = Menu();//********
-	menuMidi_ = nullptr;
-	menuSoir_ = nullptr;
+	menuMatin_ = new Menu();//********
+	menuMidi_ = new Menu();
+	menuSoir_ = new Menu();
 	capaciteTables_ = 0;
 	nbTables_ = 0;
 	tables_ = new Table* [INTTABLES];
@@ -155,6 +153,17 @@ void Restaurant::afficher(){
 
 	}
 
+}
+
+Restaurant::~Restaurant()
+{
+	delete nom_;
+	delete menuMatin_;
+	delete menuMidi_;
+	delete menuSoir_;
+	for (int i = 0; i < (capaciteTables_); i++)
+		tables_[i] = nullptr;
+	delete[] tables_;
 }
 
 
