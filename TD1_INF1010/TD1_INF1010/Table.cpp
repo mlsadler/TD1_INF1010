@@ -41,17 +41,17 @@ Table::Table(int id, int nbPlaces)
 	// felix: lireMenu() //wtf???
 }
 
-int Table::getId()
+int Table::getId() const
 {
 	return id_;
 }
 
-int Table::getNbPlaces()
+int Table::getNbPlaces() const
 {
 	return nbPlaces_;
 }
 
-bool Table::estOccupee()
+bool Table::estOccupee() const
 {
 	return occupee_; 
 }
@@ -66,7 +66,7 @@ void Table::libererTable()
 
 void Table::placerClient()
 {
-	occupee_ = true; //   felix: dont know wtf is going on here... -----------> mark c bon
+	occupee_ = true;
 }
 
 void Table::setId(int id)
@@ -87,9 +87,10 @@ void Table::commander(Plat* plat)
 			commande_[i] = copieCommande[i];
 		for (int i = (capacite_ / 2); i < capacite_; i++)
 			commande_[i] = nullptr;
-		delete[] copieCommande;
+		
 		for (int i = 0; i < (capacite_ / 2); i++)
 			copieCommande[i] = nullptr;
+		delete[] copieCommande;
 	}
 	commande_[nbPlats_] = plat;
 	nbPlats_++;
@@ -99,8 +100,8 @@ double Table::getChiffreAffaire()
 {
 	double coutTotal = 0, prixTotal = 0;
 	for (int i = 0; i < capacite_; i++) {
-		coutTotal += commande_[i]->getCout;
-		prixTotal += commande_[i]->getPrix;
+		coutTotal += commande_[i]->getCout();
+		prixTotal += commande_[i]->getPrix();
 	}
 	double chiffreAffaire = prixTotal - coutTotal;
 	return chiffreAffaire;
@@ -112,11 +113,19 @@ void Table::afficher()
 		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est occupée.";
 		cout << endl << "Voici la commande des clients: " << endl;
 		for (int i = 0; i < nbPlats_; i++) 
-			commande_[i]->afficher;
+			commande_[i]->afficher();
 	}
 	else {
 		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est libre.";
 		cout << endl;
 	}
 
+}
+
+
+Table::~Table()
+{
+	for (int i = 0; i < (capacite_ ); i++)
+		commande_[i] = nullptr;
+	delete[] commande_;
 }
