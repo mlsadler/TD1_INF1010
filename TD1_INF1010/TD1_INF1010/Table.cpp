@@ -24,7 +24,7 @@ Table::Table()
 	nbPlats_ = 0;
 	occupee_ = false;
 	commande_ = new Plat*[capacite_];
-	for (int i = 0; i < capacite_; i++)
+	for (unsigned int i = 0; i < capacite_; i++)
 		commande_[i] = nullptr;
 }
 
@@ -36,7 +36,7 @@ Table::Table(int id, int nbPlaces)
 	nbPlats_ = 0;
 	occupee_ = false;
 	commande_ = new Plat*[capacite_];
-	for (int i = 0; i < capacite_; i++)
+	for (unsigned int i = 0; i < capacite_; i++)
 		commande_[i] = nullptr; // felix: methode de lecture?? ------------------> mark: non c bon c dans la fonction que tu va ajouter des plats mais y faut qui y aille une liste
 	// felix: lireMenu() //wtf???
 }
@@ -59,7 +59,7 @@ bool Table::estOccupee() const
 void Table::libererTable()
 {
 	//delete[] commande_; ------------> mark: je pense que c juste la deuxieme affaire on va delete la liste mais qu elle aille rien pour quand les prochain client vont mettre des affaire dedans
-	for (int i = 0; i < capacite_; i++)
+	for (unsigned int i = 0; i < capacite_; i++)
 		commande_[i] = nullptr; // felix: qu est ce qu il faut effacer --------> mark: check en haut
 	occupee_ = false;
 }
@@ -77,20 +77,13 @@ void Table::setId(int id)
 void Table::commander(Plat* plat)
 {
 	if (nbPlats_ == capacite_) {
-		Plat** copieCommande = new Plat*[capacite_];
-		for (int i = 0; i < capacite_; i++)
-			copieCommande[i] = commande_[i];
 		capacite_ *= 2;
-		delete[] commande_;
-		commande_ = new Plat*[capacite_];
-		for (int i = 0; i < (capacite_ / 2); i++)
-			commande_[i] = copieCommande[i];
-		for (int i = (capacite_ / 2); i < capacite_; i++)
-			commande_[i] = nullptr;
+		Plat** copieCommande = new Plat*[capacite_];
+		for (unsigned int i = 0; i < capacite_; i++)
+			copieCommande[i] = commande_[i];
 		
-		for (int i = 0; i < (capacite_ / 2); i++)
-			copieCommande[i] = nullptr;
-		delete[] copieCommande;
+		delete[] commande_;
+		commande_ = copieCommande;
 	}
 	commande_[nbPlats_] = plat;
 	nbPlats_++;
@@ -99,7 +92,7 @@ void Table::commander(Plat* plat)
 double Table::getChiffreAffaire()
 {
 	double coutTotal = 0, prixTotal = 0;
-	for (int i = 0; i < capacite_; i++) {
+	for (unsigned int i = 0; i < capacite_; i++) {
 		coutTotal += commande_[i]->getCout();
 		prixTotal += commande_[i]->getPrix();
 	}
@@ -112,7 +105,7 @@ void Table::afficher()
 	if (occupee_) {
 		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est occupée.";
 		cout << endl << "Voici la commande des clients: " << endl;
-		for (int i = 0; i < nbPlats_; i++) 
+		for (unsigned int i = 0; i < nbPlats_; i++) 
 			commande_[i]->afficher();
 	}
 	else {
@@ -125,7 +118,7 @@ void Table::afficher()
 
 Table::~Table()
 {
-	for (int i = 0; i < (capacite_ ); i++)
+	for (unsigned int i = 0; i < capacite_ ; i++)
 		commande_[i] = nullptr;
 	delete[] commande_;
 }

@@ -21,7 +21,7 @@ Menu::Menu()
 	nbPlats_ = 0;
 	type_ = Matin;
 	listePlats_ = new Plat* [capacite_];
-	for (int i = 0; i < capacite_; i++) 
+	for (unsigned int i = 0; i < capacite_; i++) 
 		listePlats_[i] =  nullptr;
 }
 
@@ -31,9 +31,12 @@ Menu::Menu(string fichier, TypeMenu type)
 	capacite_ = MAXPLAT;
 	nbPlats_ = 0;
 	listePlats_ = new Plat*[capacite_];
+
 	for (int i = 0; i < MAXPLAT; i++)
 		listePlats_[i] = nullptr;
-	lireMenu(fichier);
+
+	
+	lireMenu(fichier); //il entre ici
 }
 
 
@@ -51,7 +54,7 @@ void Menu::afficher() const
 
 Plat* Menu::trouverPlat(const string& nom) const
 {
-	for (int i = 0; i < nbPlats_; i++) {
+	for (unsigned int i = 0; i < nbPlats_; i++) {
 		if (listePlats_[i]->getNom() == nom) 
 			return listePlats_[i];
 	}
@@ -61,20 +64,12 @@ Plat* Menu::trouverPlat(const string& nom) const
 void Menu::ajouterPlat(Plat& plat)
 {
 	if (nbPlats_ == capacite_) {
-		Plat** copieListe = new Plat*[capacite_];
-		for (int i = 0; i < capacite_; i++) //jai modifié le <= que tavais mis
-			copieListe[i] = listePlats_[i];
 		capacite_ *= 2;
+		Plat** copiePlats = new Plat*[capacite_];
+		for (unsigned int i = 0; i < nbPlats_; i++)
+			copiePlats[i] = listePlats_[i];
 		delete[] listePlats_;
-		listePlats_ = new Plat*[capacite_];
-		for (int i = 0; i < (capacite_/2); i++)
-			listePlats_[i] = copieListe[i];
-		for (int i = (capacite_/2); i < capacite_; i++)
-			listePlats_[i] = nullptr;
-		
-		for (int i = 0; i < (capacite_ / 2); i++)
-			copieListe[i] = nullptr;
-		delete[] copieListe;
+		listePlats_ = copiePlats;
 	}
 	listePlats_[nbPlats_] = &plat;
 	nbPlats_++;	
@@ -86,13 +81,20 @@ void Menu::ajouterPlat(const string& nom, double montant, double cout)
 	ajouterPlat(plat);
 }
 
-bool Menu::lireMenu(const string& fichier)
+bool Menu::lireMenu(string& fichier)
 {
-	ifstream ficLire (fichier);
-	string nom, type = "";
-	double montant, cout;
+	ifstream ficLire(fichier);
+	string nom, type = "type";
+	double montant, coutPlat;
 	bool lectureEffectuee = false;
 
+	ficLire >> nom;
+	cout << nom;
+
+	if (ficLire.fail())
+		cout << "fail";
+		//return lectureEffectuee;
+	
 	switch (type_) {
 	case (Matin):
 		
@@ -110,8 +112,8 @@ bool Menu::lireMenu(const string& fichier)
 					 type = nom.substr(1, nom.size() - 1);
 			 }
 			 if (type == "MATIN" && nom != type) {
-				 ficLire >> montant >> cout;
-				 ajouterPlat(nom, montant, cout);
+				 ficLire >> montant >> coutPlat;
+				 ajouterPlat(nom, montant, coutPlat);
 			 }
 		 } while (type != "MIDI");
 		 return lectureEffectuee;
@@ -132,15 +134,17 @@ bool Menu::lireMenu(const string& fichier)
 					type = nom.substr(1, nom.size() - 1);
 			}
 			if (type == "MIDI" && nom != type) {
-				ficLire >> montant >> cout;
-				ajouterPlat(nom, montant, cout);
+				ficLire >> montant >> coutPlat;
+				ajouterPlat(nom, montant, coutPlat);
 			}
 		} while (type != "SOIR");
 		return lectureEffectuee;
 		break;
 	case (Soir):
 		do {
+			
 			if (type != "SOIR") {
+				//cout << nom;
 				getline(ficLire, nom);
 				if (nom[0] == '-') {
 					type = nom.substr(1, nom.size() - 1);
@@ -153,21 +157,20 @@ bool Menu::lireMenu(const string& fichier)
 					type = nom.substr(1, nom.size() - 1);
 			}
 			if (type == "SOIR" && nom != type) {
-				ficLire >> montant >> cout;
-				ajouterPlat(nom, montant, cout);
+				ficLire >> montant >> coutPlat;
+				ajouterPlat(nom, montant, coutPlat);
 			}
 		} while (type != "TABLES");
 		return lectureEffectuee;
 		break;
 	}
 	ficLire.close();
-	lectureEffectuee = false;
-	return lectureEffectuee;
+	
 }
 
 Menu::~Menu()
 {
-	for (int i = 0; i < (capacite_); i++)
+	for (unsigned int i = 0; i < capacite_; i++)
 		listePlats_[i] = nullptr;
 	delete[] listePlats_;
 }

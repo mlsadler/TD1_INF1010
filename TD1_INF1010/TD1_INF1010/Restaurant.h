@@ -19,7 +19,7 @@ public:
 	void setMoment(TypeMenu moment); 
 
 	//getters 
-	string getNom() const; 
+	string getNom();//const 
 	TypeMenu getMoment()const; 
 
 	//Autres methodes 

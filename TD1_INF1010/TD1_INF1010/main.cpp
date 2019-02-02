@@ -6,16 +6,17 @@
 
 #include "Restaurant.h"
 #include <string>
+#include <iostream>
 
 using namespace std; 
 
-int main() {
-
+int main()
+{
+	cout << "test debut ";
 	//creation du restaurant - avec le fichier donne - le nom : PolyFood - moment de la journee : soir. 
 	string fichier = "polyFood.txt";
 	string nomRestaurant = "PolyFood";
-	Restaurant polyfood (fichier, nomRestaurant, Soir);
-
+	Restaurant polyfood (fichier, nomRestaurant, Soir); //il entre ici
 
 	//creer plusieurs clients -- des entiers 
 
@@ -24,6 +25,7 @@ int main() {
 	int client3 = 15; 
 	int client4 = 3; 
 	int client5 = 2; 
+	
 
 	//placer les clients 
 
@@ -32,6 +34,8 @@ int main() {
 	polyfood.placerClients(15);
 	polyfood.placerClients(3);
 	polyfood.placerClients(2);
+
+
 
 
 	// commander des plats

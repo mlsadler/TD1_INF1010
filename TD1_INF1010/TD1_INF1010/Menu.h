@@ -10,6 +10,7 @@
 #include "Plat.h"
 #include <fstream>
 
+
 enum TypeMenu{Matin, Midi, Soir};
 const int MAXPLAT = 5;
 class Menu {
@@ -29,7 +30,7 @@ public:
 	Plat* trouverPlat(const string& nom) const; 
 	void ajouterPlat(Plat & plat); 
 	void ajouterPlat(const string& nom, double montant, double cout); 
-	bool lireMenu(const string& fichier); 
+	bool lireMenu(string& fichier); 
 
 	//destructeur
 	~Menu();

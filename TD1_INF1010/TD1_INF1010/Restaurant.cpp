@@ -1,8 +1,9 @@
 #include "Restaurant.h"
 
 
-Restaurant::Restaurant() {
-	*nom_ = "inconnu";
+Restaurant::Restaurant() 
+{
+	nom_ = new string("inconnu");
 	momentJournee_ = Matin;
 	chiffreAffaire_ = 0;
 	menuMatin_ = new Menu();
@@ -19,6 +20,7 @@ Restaurant::Restaurant() {
 
 Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment) 
 {
+	
 	nom_ = new string(nom);
 	momentJournee_ = moment;
 	chiffreAffaire_ = 0;
@@ -31,7 +33,7 @@ Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment
 		menuMidi_ = new Menu(fichier, moment);
 		break;
 	case 2:
-		menuSoir_ = new Menu(fichier, moment);
+		menuSoir_ = new Menu(fichier, moment); //il entre ici
 		break;
 	}
 	tables_ = new Table*[INTTABLES];
@@ -48,7 +50,7 @@ void Restaurant::setMoment(TypeMenu moment) {
 	momentJournee_ = moment;
 }
 
-string Restaurant::getNom() const {
+string Restaurant::getNom(){//const
 
 	return *nom_;
 }
@@ -84,7 +86,7 @@ void Restaurant::ajouterTable(int id, int nbPlaces){
 	if(capaciteTables_<=nbTables_){
 		capaciteTables_ *= 2;
 		Table** copieTable = new Table*[capaciteTables_];
-		for(int i=0;i<nbTables_;i++)
+		for(unsigned int i=0;i<nbTables_;i++)
 			copieTable[i] = tables_[i];
 
 		delete[] tables_;
@@ -121,10 +123,10 @@ void Restaurant::commanderPlat(const string & nom, int idTable){
 
 void Restaurant::placerClients(int nbClients){
 
-	int id, nbPlaceLibre = INFINITY;
+	int id, nbPlaceLibre = INFINITY; //infinity
 	bool tableTrouver=false;
 
-	for (int i = 0; i < nbTables_; i++) 
+	for (unsigned int i = 0; i < nbTables_; i++) 
 		if (tables_[i]->estOccupee() == false) 
 			if (tables_[i]->getNbPlaces() >= nbClients) 
 				if (nbPlaceLibre > tables_[i]->getNbPlaces() - nbClients) {
@@ -147,7 +149,7 @@ void Restaurant::afficher() const{
 
 	cout << "Le restaurant PolyFood a fait un pofit de: ", chiffreAffaire_, "$";
 	cout << "Les tables et leur disponibilite: " << endl;
-	for (int i = 0; i < nbTables_; i++) {
+	for (unsigned int i = 0; i < nbTables_; i++) {
 		
 		cout << "La table numero ", i + 1, " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
 		if (tables_[i]->estOccupee()) {
@@ -170,7 +172,7 @@ Restaurant::~Restaurant()
 	delete menuMatin_;
 	delete menuMidi_;
 	delete menuSoir_;
-	for (int i = 0; i < (capaciteTables_); i++)
+	for (unsigned int i = 0; i < capaciteTables_; i++)
 		tables_[i] = nullptr;
 	delete[] tables_;
 }
