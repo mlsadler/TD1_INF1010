@@ -36,7 +36,7 @@ Menu::Menu(string fichier, TypeMenu type)
 		listePlats_[i] = nullptr;
 
 	
-	lireMenu(fichier); //il entre ici
+	lireMenu(fichier);
 }
 
 
@@ -68,6 +68,8 @@ void Menu::ajouterPlat(Plat& plat)
 		Plat** copiePlats = new Plat*[capacite_];
 		for (unsigned int i = 0; i < nbPlats_; i++)
 			copiePlats[i] = listePlats_[i];
+		for (unsigned int i = nbPlats_; i < capacite_; i++)
+			copiePlats[i] = nullptr;
 		delete[] listePlats_;
 		listePlats_ = copiePlats;
 	}
@@ -77,7 +79,7 @@ void Menu::ajouterPlat(Plat& plat)
 
 void Menu::ajouterPlat(const string& nom, double montant, double cout)
 {
-	Plat plat=Plat(nom, montant, cout);
+	Plat plat(nom, montant, cout);
 	ajouterPlat(plat);
 }
 
@@ -87,14 +89,7 @@ bool Menu::lireMenu(string& fichier)
 	string nom, type = "type";
 	double montant, coutPlat;
 	bool lectureEffectuee = false;
-
-	ficLire >> nom;
-	cout << nom;
-
-	if (ficLire.fail())
-		cout << "fail";
-		//return lectureEffectuee;
-	
+		
 	switch (type_) {
 	case (Matin):
 		
@@ -116,7 +111,7 @@ bool Menu::lireMenu(string& fichier)
 				 ajouterPlat(nom, montant, coutPlat);
 			 }
 		 } while (type != "MIDI");
-		 return lectureEffectuee;
+		 lectureEffectuee = true;
 		 break;
 	case (Midi):
 
@@ -138,13 +133,11 @@ bool Menu::lireMenu(string& fichier)
 				ajouterPlat(nom, montant, coutPlat);
 			}
 		} while (type != "SOIR");
-		return lectureEffectuee;
+		lectureEffectuee = true;
 		break;
 	case (Soir):
 		do {
-			
 			if (type != "SOIR") {
-				//cout << nom;
 				getline(ficLire, nom);
 				if (nom[0] == '-') {
 					type = nom.substr(1, nom.size() - 1);
@@ -160,12 +153,13 @@ bool Menu::lireMenu(string& fichier)
 				ficLire >> montant >> coutPlat;
 				ajouterPlat(nom, montant, coutPlat);
 			}
+			//cout << type << nom << montant << coutPlat << endl;
 		} while (type != "TABLES");
-		return lectureEffectuee;
+		lectureEffectuee = true;
 		break;
 	}
 	ficLire.close();
-	
+	return lectureEffectuee;
 }
 
 Menu::~Menu()

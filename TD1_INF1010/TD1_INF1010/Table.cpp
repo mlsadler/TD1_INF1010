@@ -51,7 +51,7 @@ int Table::getNbPlaces() const
 	return nbPlaces_;
 }
 
-bool Table::estOccupee() const
+bool Table::estOccupee() //const
 {
 	return occupee_; 
 }
@@ -103,14 +103,12 @@ double Table::getChiffreAffaire()
 void Table::afficher()
 {
 	if (occupee_) {
-		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est occupée.";
-		cout << endl << "Voici la commande des clients: " << endl;
+		cout << "La table " << id_ << "a " << nbPlaces_ << "places et elle est occupée."<< endl << "Voici la commande des clients: " << endl;
 		for (unsigned int i = 0; i < nbPlats_; i++) 
 			commande_[i]->afficher();
 	}
 	else {
-		cout << "La table ", id_, "a ", nbPlaces_, "places et elle est libre.";
-		cout << endl;
+		cout << "La table "<< id_ << "a " << nbPlaces_ << "places et elle est libre." << endl;
 	}
 
 }

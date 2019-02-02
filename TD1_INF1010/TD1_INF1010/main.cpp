@@ -12,11 +12,13 @@ using namespace std;
 
 int main()
 {
-	cout << "test debut ";
+	cout << "test debut " << endl;
 	//creation du restaurant - avec le fichier donne - le nom : PolyFood - moment de la journee : soir. 
 	string fichier = "polyFood.txt";
 	string nomRestaurant = "PolyFood";
-	Restaurant polyfood (fichier, nomRestaurant, Soir); //il entre ici
+	Restaurant polyfood (fichier, nomRestaurant, Soir);
+
+	
 
 	//creer plusieurs clients -- des entiers 
 
@@ -29,14 +31,11 @@ int main()
 
 	//placer les clients 
 
-	polyfood.placerClients(1);
-	polyfood.placerClients(5);
-	polyfood.placerClients(15);
-	polyfood.placerClients(3);
-	polyfood.placerClients(2);
-
-
-
+	polyfood.placerClients(client1);
+	polyfood.placerClients(client2);
+	polyfood.placerClients(client3);
+	polyfood.placerClients(client4);
+	polyfood.placerClients(client5);
 
 	// commander des plats
 	//Poisson - Table 1 

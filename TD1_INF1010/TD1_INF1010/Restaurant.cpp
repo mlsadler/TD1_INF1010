@@ -36,6 +36,7 @@ Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment
 		menuSoir_ = new Menu(fichier, moment); //il entre ici
 		break;
 	}
+	//menuSoir_->afficher(); //test
 	tables_ = new Table*[INTTABLES];
 	for (int i = 0; i < INTTABLES; i++) {
 		tables_[i] = nullptr;
@@ -74,16 +75,15 @@ void Restaurant::lireTable(const string & fichier){
 
 	while (!ws(ficLire).eof()) {
 		ficLire >> id >> nbPlaces;
-		capaciteTables_ += nbPlaces;
 		nbTables_++;
 		ajouterTable(id, nbPlaces);
-		
 	}
+
 	ficLire.close();
 }
 
 void Restaurant::ajouterTable(int id, int nbPlaces){
-	if(capaciteTables_<=nbTables_){
+	if(capaciteTables_==nbTables_){
 		capaciteTables_ *= 2;
 		Table** copieTable = new Table*[capaciteTables_];
 		for(unsigned int i=0;i<nbTables_;i++)
@@ -93,9 +93,9 @@ void Restaurant::ajouterTable(int id, int nbPlaces){
 		tables_ = copieTable;
 		
 	}
-	tables_[id-1]= &Table(id, nbPlaces);/////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????****etoile?
-
-	 
+	Table table (id, nbPlaces);
+	tables_[id - 1] = &table; /////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
+	
 }
 
 void Restaurant::libererTable(int id){//////////// dans la fonction j assume que la liste est toujours assez grande 
@@ -123,37 +123,56 @@ void Restaurant::commanderPlat(const string & nom, int idTable){
 
 void Restaurant::placerClients(int nbClients){
 
-	int id, nbPlaceLibre = INFINITY; //infinity
-	bool tableTrouver=false;
+	int id, nbPlaceLibre,nbPlaceMin = 400; //infinity
+	bool tableTrouver = false;
+	bool occupation;
+	double nbPlaceTable, idTable;
 
-	for (unsigned int i = 0; i < nbTables_; i++) 
-		if (tables_[i]->estOccupee() == false) 
-			if (tables_[i]->getNbPlaces() >= nbClients) 
-				if (nbPlaceLibre > tables_[i]->getNbPlaces() - nbClients) {
+	cout << "table 0 " << tables_[0]->estOccupee << endl;
+	//cout << "table 1 " << tables_[1]->estOccupee << endl;
+	//cout << "table 2 " << tables_[2]->estOccupee << endl;
+	//cout << "table 3 " << tables_[3]->estOccupee << endl;
+	
+
+	for (unsigned int i = 0; i < nbTables_; i++) {
+		occupation = tables_[i]->estOccupee();
+		nbPlaceTable = tables_[i]->getNbPlaces();
+		idTable = tables_[i]->getId();
+		//cout << endl << occupation << " " << nbPlaceTable << " " << idTable;
+
+		if (occupation == false) {
+			cout << " test occupe";
+			if (tables_[i]->getNbPlaces() >= nbClients) {
+				nbPlaceLibre = (tables_[i]->getNbPlaces() - nbClients);
+				cout << " table libre";
+				if (nbPlaceLibre < nbPlaceMin) {
+					cout << " table mini";
 					id = tables_[i]->getId();
-					nbPlaceLibre = tables_[i]->getNbPlaces() - nbClients;
+					nbPlaceMin = nbPlaceLibre;
 					tableTrouver = true;
 				}
-
+			}
+		}
+	}
 	if (tableTrouver) 
 		tables_[id - 1]->placerClient();
 	
-	else {
-		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table.";
-	}
+	else 
+		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table." << endl;
+	
 
 
 }
 
 void Restaurant::afficher() const{
 
-	cout << "Le restaurant PolyFood a fait un pofit de: ", chiffreAffaire_, "$";
+	cout << "Le restaurant PolyFood a fait un pofit de: "<< chiffreAffaire_<< "$" <<endl;
 	cout << "Les tables et leur disponibilite: " << endl;
 	for (unsigned int i = 0; i < nbTables_; i++) {
 		
-		cout << "La table numero ", i + 1, " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
+		cout << "La table numero "<< i + 1<< " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
 		if (tables_[i]->estOccupee()) {
-			cout << "libre."<<endl ;
+			cout << "libre."<< endl ;
 		}
 		else {
 			cout << "prise." << endl; ////// mark: felix je sais pas comment conjuguer prise

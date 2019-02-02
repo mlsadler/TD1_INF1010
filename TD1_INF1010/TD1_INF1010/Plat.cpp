@@ -58,8 +58,7 @@ void Plat::setPrix(double prix)
 
 void Plat::afficher() const
 {
-	cout << "Le nom du plat est ", nom_, " avec un prix de ", prix_, " associer avec un coup de ", cout_, '.';
-	cout << endl;
+	cout << "Le nom du plat est " << nom_ << " avec un prix de " << prix_ << " associer avec un cout de " <<  cout_ << '.' << endl;
 }
 
 Plat::~Plat(){}

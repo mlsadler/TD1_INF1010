@@ -18,7 +18,7 @@ public:
 	//getters 
 	int getId() const; 
 	int getNbPlaces() const; 
-	bool estOccupee() const; 
+	bool estOccupee(); //const; 
 
 	//setters 
 	void libererTable(); 
