@@ -1,2 +1,8 @@
-﻿  main.cpp
+﻿  Restaurant.cpp
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(106): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(121): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(174): warning C4018: '<': signed/unsigned mismatch
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(152): warning C4101: 'occupation': unreferenced local variable
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(153): warning C4101: 'idTable': unreferenced local variable
+c:\users\mark\documents\school\hiver 2019\inf1010\td\td1_inf1010\td1_inf1010\td1_inf1010\restaurant.cpp(153): warning C4101: 'nbPlaceTable': unreferenced local variable
   TD1_INF1010.vcxproj -> C:\Users\mark\Documents\school\Hiver 2019\INF1010\TD\TD1_INF1010\TD1_INF1010\x64\Debug\TD1_INF1010.exe

@@ -14,6 +14,7 @@
   * Description: Constructeur par défaut
   * Paramètres: aucun
   * Retour: aucun
+  * 
   ****************************************************************************/
 Menu::Menu() 
 {
@@ -165,7 +166,8 @@ bool Menu::lireMenu(string& fichier)
 
 Menu::~Menu()
 {
-	for (unsigned int i = 0; i < capacite_; i++)
+
+	for (unsigned int i = 0; i < nbPlats_; i++)
 		listePlats_[i] = nullptr;
 	delete[] listePlats_;
 }

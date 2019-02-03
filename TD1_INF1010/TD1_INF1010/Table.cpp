@@ -85,8 +85,15 @@ void Table::commander(Plat* plat)
 		delete[] commande_;
 		commande_ = copieCommande;
 	}
-	commande_[nbPlats_] = plat;
-	nbPlats_++;
+	
+	if (plat == nullptr) {
+		cout << "Erreur: Le plat n'existe pas dans se menu." << endl;
+	}
+	else {
+		commande_[nbPlats_] = plat;
+		nbPlats_++;
+	}
+	
 }
 
 double Table::getChiffreAffaire()
@@ -95,7 +102,6 @@ double Table::getChiffreAffaire()
 	for (unsigned int i = 0; i < nbPlats_; i++) {
 		coutTotal += commande_[i]->getCout();
 		prixTotal += commande_[i]->getPrix();
-		cout << "yoloooo id de la table:"<<id_ << endl;
 	}
 	double chiffreAffaire = prixTotal - coutTotal;
 	return chiffreAffaire;

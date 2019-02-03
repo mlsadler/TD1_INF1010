@@ -28,12 +28,18 @@ Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment
 	switch (moment) {
 	case 0:
 		menuMatin_ = new Menu(fichier, moment);
+		menuMidi_ = new Menu();
+		menuSoir_ = new Menu();
 		break;
 	case 1:
 		menuMidi_ = new Menu(fichier, moment);
+		menuMatin_ = new Menu();
+		menuSoir_ = new Menu();
 		break;
 	case 2:
 		menuSoir_ = new Menu(fichier, moment); //il entre ici
+		menuMatin_ = new Menu();
+		menuMidi_ = new Menu();
 		break;
 	}
 	//menuSoir_->afficher(); //test
@@ -143,18 +149,19 @@ void Restaurant::commanderPlat(const string & nom, int idTable){
 
 
 
-void Restaurant::placerClients(int nbClients){
+void Restaurant::placerClients(int nbClients)
+{
 
-	int id, nbPlaceLibre,nbPlaceMin = 400, placeListeTable; //infinity
+	int id, nbPlaceLibre,nbPlaceMin = 400, placeListeTable; //Nous avons choisi de mettre nbPlaceMin a 400, car nous assumons que les tables aurons pas plus de 400 place
 	bool tableTrouver = false;
 	bool occupation;
 	double nbPlaceTable, idTable;
 
 	
 
-	for (unsigned int i = 0; i < nbTables_; i++) {
+	for (unsigned int i = 0; i < nbTables_; i++) 
 
-		if (tables_[i]->estOccupee() == false) {
+		if (tables_[i]->estOccupee() == false) 
 			
 			if (tables_[i]->getNbPlaces() >= nbClients) {
 				nbPlaceLibre = (tables_[i]->getNbPlaces() - nbClients);
@@ -166,8 +173,8 @@ void Restaurant::placerClients(int nbClients){
 					tableTrouver = true;
 				}
 			}
-		}
-	}
+		
+	
 	if (tableTrouver) {
 		for (int i = 0; i < nbTables_; i++) {
 			if (tables_[i]->getId() == id) {
@@ -180,10 +187,6 @@ void Restaurant::placerClients(int nbClients){
 	
 	else 
 		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table." << endl;
-	
-	
-
-
 }
 
 void Restaurant::afficher() const{

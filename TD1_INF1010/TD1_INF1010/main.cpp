@@ -62,13 +62,14 @@ int main()
 	cout << "-------------------------------------------------" << endl; 
 
 	//liberer les tables
-	for (int i = 1; i< 4; i++)
+	for (int i = 1; i< 5; i++)
 		polyfood.libererTable(i);
 	
 
 	//afficher le restaurant 
 	/////////////////////////////////poly.afficher(); 
 	polyfood.afficher();
+	
 	return 0;
 
 }
