@@ -128,10 +128,10 @@ void Restaurant::placerClients(int nbClients){
 	bool occupation;
 	double nbPlaceTable, idTable;
 
-	cout << "table 0 " << tables_[0]->estOccupee << endl;
-	//cout << "table 1 " << tables_[1]->estOccupee << endl;
-	//cout << "table 2 " << tables_[2]->estOccupee << endl;
-	//cout << "table 3 " << tables_[3]->estOccupee << endl;
+	cout << "table 0 " << tables_[0]->estOccupee() << endl;
+	//cout << "table 1 " << tables_[1]->estOccupee() << endl;
+	//cout << "table 2 " << tables_[2]->estOccupee() << endl;
+	//cout << "table 3 " << tables_[3]->estOccupee() << endl;
 	
 
 	for (unsigned int i = 0; i < nbTables_; i++) {

@@ -17,7 +17,7 @@ int main()
 	string fichier = "polyFood.txt";
 	string nomRestaurant = "PolyFood";
 	Restaurant polyfood (fichier, nomRestaurant, Soir);
-
+	
 	
 
 	//creer plusieurs clients -- des entiers 
@@ -46,7 +46,7 @@ int main()
 	//Oeuf - Table 4 
 	string poisson = "Poisson", poulet = "Poulet", pizza = "pizza", muffin = "muffin", oeuf = "oeuf";
 	polyfood.commanderPlat(poisson, 1);
-	polyfood.commanderPlat(poulet, 2);
+	polyfood.commanderPlat(poulet, 2); //trouverPlat
 	polyfood.commanderPlat(pizza, 2);
 	polyfood.commanderPlat(poulet, 4);
 	polyfood.commanderPlat(muffin, 4);
