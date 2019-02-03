@@ -54,6 +54,7 @@ void Menu::afficher() const
 
 Plat* Menu::trouverPlat(const string& nom) const
 {
+	
 	for (unsigned int i = 0; i < nbPlats_; i++) {
 		if (listePlats_[i]->getNom() == nom) 
 			return listePlats_[i];
@@ -79,8 +80,8 @@ void Menu::ajouterPlat(Plat& plat)
 
 void Menu::ajouterPlat(const string& nom, double montant, double cout)
 {
-	Plat plat(nom, montant, cout);
-	ajouterPlat(plat);
+	Plat* plat= new Plat(nom, montant, cout);
+	ajouterPlat(*plat);
 }
 
 bool Menu::lireMenu(string& fichier)

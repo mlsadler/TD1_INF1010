@@ -44,7 +44,9 @@ int main()
 	//Poulet - Table 4
 	//Muffin - Table 4 
 	//Oeuf - Table 4 
-	string poisson = "Poisson", poulet = "Poulet", pizza = "pizza", muffin = "muffin", oeuf = "oeuf";
+	string poisson = "Poisson", poulet = "Poulet", pizza = "Pizza", muffin = "Muffin", oeuf = "Oeuf";
+	
+	
 	polyfood.commanderPlat(poisson, 1);
 	polyfood.commanderPlat(poulet, 2); //trouverPlat
 	polyfood.commanderPlat(pizza, 2);
@@ -60,7 +62,7 @@ int main()
 	cout << "-------------------------------------------------" << endl; 
 
 	//liberer les tables
-	for (int i = 0; i< 4; i++)
+	for (int i = 1; i< 5; i++)
 		polyfood.libererTable(i);
 	
 

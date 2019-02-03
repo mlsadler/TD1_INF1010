@@ -76,6 +76,7 @@ void Table::setId(int id)
 
 void Table::commander(Plat* plat)
 {
+	cout << "dsafkllksdfa";
 	if (nbPlats_ == capacite_) {
 		capacite_ *= 2;
 		Plat** copieCommande = new Plat*[capacite_];

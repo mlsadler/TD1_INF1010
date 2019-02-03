@@ -75,8 +75,8 @@ void Restaurant::lireTable(const string & fichier){
 
 	while (!ws(ficLire).eof()) {
 		ficLire >> id >> nbPlaces;
-		nbTables_++;
 		ajouterTable(id, nbPlaces);
+		nbTables_++;
 	}
 
 	ficLire.close();
@@ -93,33 +93,61 @@ void Restaurant::ajouterTable(int id, int nbPlaces){
 		tables_ = copieTable;
 		
 	}
-	Table table (id, nbPlaces);
-	tables_[id - 1] = &table; /////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
+	Table* table= new Table(id,nbPlaces);
+	tables_[nbTables_] = table; /////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
 	
 }
 
 void Restaurant::libererTable(int id){//////////// dans la fonction j assume que la liste est toujours assez grande 
+	int placeListeTable;
+	cout << " le id transmit: " << id << endl;
+	for (int i = 0; i < nbTables_; i++) {
+		if (tables_[i]->getId() == id) {
+			placeListeTable = i;
+			cout << "yoloooooo";
+		}
+	}
+	for (int i = 0; i < nbTables_; i++) {
+		cout<<"Les id des tables: "<<tables_[i]->getId()<<endl;
+	}
 
-	chiffreAffaire_+= tables_[id - 1]->getChiffreAffaire();
-	tables_[id - 1]->libererTable();
+
+
+
+	chiffreAffaire_+= tables_[placeListeTable]->getChiffreAffaire();
+	tables_[placeListeTable]->libererTable();
 	
 }
 
 void Restaurant::commanderPlat(const string & nom, int idTable){
+	int placeListeTable;
 
+	for (int i = 0; i < nbTables_; i++) {
+		if (tables_[i]->getId() == idTable) {
+			placeListeTable = i;
+			
+		}
+	}
+	
 	switch (momentJournee_) {
 	case 0:
-		tables_[idTable - 1]->commander(menuMatin_->trouverPlat(nom));
+		tables_[placeListeTable]->commander(menuMatin_->trouverPlat(nom));
 		break;
 	case 1:
-		tables_[idTable - 1]->commander(menuMidi_->trouverPlat(nom));
+		tables_[placeListeTable]->commander(menuMidi_->trouverPlat(nom));
 		break;
 	case 2:
-		tables_[idTable - 1]->commander(menuSoir_->trouverPlat(nom));
+		
+		tables_[placeListeTable]->commander(menuSoir_->trouverPlat(nom));
 		break;
 	}
 
 }
+
+
+
+
+
 
 void Restaurant::placerClients(int nbClients){
 
@@ -128,25 +156,17 @@ void Restaurant::placerClients(int nbClients){
 	bool occupation;
 	double nbPlaceTable, idTable;
 
-	cout << "table 0 " << tables_[0]->estOccupee() << endl;
-	//cout << "table 1 " << tables_[1]->estOccupee() << endl;
-	//cout << "table 2 " << tables_[2]->estOccupee() << endl;
-	//cout << "table 3 " << tables_[3]->estOccupee() << endl;
 	
 
 	for (unsigned int i = 0; i < nbTables_; i++) {
-		occupation = tables_[i]->estOccupee();
-		nbPlaceTable = tables_[i]->getNbPlaces();
-		idTable = tables_[i]->getId();
-		//cout << endl << occupation << " " << nbPlaceTable << " " << idTable;
 
-		if (occupation == false) {
-			cout << " test occupe";
+		if (tables_[i]->estOccupee() == false) {
+			
 			if (tables_[i]->getNbPlaces() >= nbClients) {
 				nbPlaceLibre = (tables_[i]->getNbPlaces() - nbClients);
-				cout << " table libre";
+				
 				if (nbPlaceLibre < nbPlaceMin) {
-					cout << " table mini";
+					
 					id = tables_[i]->getId();
 					nbPlaceMin = nbPlaceLibre;
 					tableTrouver = true;
@@ -159,6 +179,7 @@ void Restaurant::placerClients(int nbClients){
 	
 	else 
 		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table." << endl;
+	
 	
 
 
