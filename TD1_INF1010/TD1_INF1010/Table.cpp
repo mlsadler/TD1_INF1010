@@ -76,7 +76,6 @@ void Table::setId(int id)
 
 void Table::commander(Plat* plat)
 {
-	cout << "dsafkllksdfa";
 	if (nbPlats_ == capacite_) {
 		capacite_ *= 2;
 		Plat** copieCommande = new Plat*[capacite_];
@@ -93,9 +92,10 @@ void Table::commander(Plat* plat)
 double Table::getChiffreAffaire()
 {
 	double coutTotal = 0, prixTotal = 0;
-	for (unsigned int i = 0; i < capacite_; i++) {
+	for (unsigned int i = 0; i < nbPlats_; i++) {
 		coutTotal += commande_[i]->getCout();
 		prixTotal += commande_[i]->getPrix();
+		cout << "yoloooo id de la table:"<<id_ << endl;
 	}
 	double chiffreAffaire = prixTotal - coutTotal;
 	return chiffreAffaire;

@@ -100,19 +100,13 @@ void Restaurant::ajouterTable(int id, int nbPlaces){
 
 void Restaurant::libererTable(int id){//////////// dans la fonction j assume que la liste est toujours assez grande 
 	int placeListeTable;
-	cout << " le id transmit: " << id << endl;
+
 	for (int i = 0; i < nbTables_; i++) {
 		if (tables_[i]->getId() == id) {
 			placeListeTable = i;
-			cout << "yoloooooo";
 		}
 	}
-	for (int i = 0; i < nbTables_; i++) {
-		cout<<"Les id des tables: "<<tables_[i]->getId()<<endl;
-	}
-
-
-
+	
 
 	chiffreAffaire_+= tables_[placeListeTable]->getChiffreAffaire();
 	tables_[placeListeTable]->libererTable();
@@ -151,7 +145,7 @@ void Restaurant::commanderPlat(const string & nom, int idTable){
 
 void Restaurant::placerClients(int nbClients){
 
-	int id, nbPlaceLibre,nbPlaceMin = 400; //infinity
+	int id, nbPlaceLibre,nbPlaceMin = 400, placeListeTable; //infinity
 	bool tableTrouver = false;
 	bool occupation;
 	double nbPlaceTable, idTable;
@@ -174,8 +168,15 @@ void Restaurant::placerClients(int nbClients){
 			}
 		}
 	}
-	if (tableTrouver) 
-		tables_[id - 1]->placerClient();
+	if (tableTrouver) {
+		for (int i = 0; i < nbTables_; i++) {
+			if (tables_[i]->getId() == id) {
+				placeListeTable = i;
+			}
+		}
+		tables_[placeListeTable]->placerClient();
+	}
+		
 	
 	else 
 		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table." << endl;
@@ -193,10 +194,11 @@ void Restaurant::afficher() const{
 		
 		cout << "La table numero "<< i + 1<< " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
 		if (tables_[i]->estOccupee()) {
-			cout << "libre."<< endl ;
+			cout << "prise." << endl;
 		}
 		else {
-			cout << "prise." << endl; ////// mark: felix je sais pas comment conjuguer prise
+			cout << "libre." << endl;
+			 ////// mark: felix je sais pas comment conjuguer prise
 			//////felix: mark...get goood!!!!! pas de s car cest une table
 			//
 		}

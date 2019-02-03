@@ -62,7 +62,7 @@ int main()
 	cout << "-------------------------------------------------" << endl; 
 
 	//liberer les tables
-	for (int i = 1; i< 5; i++)
+	for (int i = 1; i< 4; i++)
 		polyfood.libererTable(i);
 	
 
