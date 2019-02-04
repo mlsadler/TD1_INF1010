@@ -1,21 +1,20 @@
 /****************************************************************************
- * Fichier: Point.h
- * Auteur: Georges Abou-Khalil
- * Date: 2 sept 2008
- * Mise a jour : 11 mai 2011
- * Description: Implémentation de la classe Point
+ * Fichier: Table.cpp
+ * Auteur: Mark Weber-Sadler et Felix Dumont
+ * Date: 4 fevrier 2019
+ * Description: Implémentation de la classe Table
  ****************************************************************************/
+
 
 #include "Table.h"
 
 
  /****************************************************************************
-  * Fonction: Point::Point
-  * Description: Constructeur par défaut
-  * Paramètres: aucun
-  * Retour: aucun
+  * Description: Constructeur par default
+  * in:
+  * out:
+  * in \ out:
   ****************************************************************************/
-
 Table::Table() 
 {
 	capacite_ = MAXCAP;
@@ -28,6 +27,12 @@ Table::Table()
 		commande_[i] = nullptr;
 }
 
+/****************************************************************************
+ * Description: Constructeur avec parametre
+ * in: id et nbPlaces
+ * out:
+ * in \ out:
+ ****************************************************************************/
 Table::Table(int id, int nbPlaces)
 {
 	capacite_ = MAXCAP;
@@ -37,43 +42,84 @@ Table::Table(int id, int nbPlaces)
 	occupee_ = false;
 	commande_ = new Plat*[capacite_];
 	for (unsigned int i = 0; i < capacite_; i++)
-		commande_[i] = nullptr; // felix: methode de lecture?? ------------------> mark: non c bon c dans la fonction que tu va ajouter des plats mais y faut qui y aille une liste
-	// felix: lireMenu() //wtf???
+		commande_[i] = nullptr; 
 }
 
+/****************************************************************************
+ * Description: Fonction qui retourne le id de la table
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 int Table::getId() const
 {
 	return id_;
 }
 
+/****************************************************************************
+ * Description: Fonction qui retourne le nombre de place que la table offre
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 int Table::getNbPlaces() const
 {
 	return nbPlaces_;
 }
 
+/****************************************************************************
+ * Description: Fonction qui retourne si la table est occupee ou non
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 bool Table::estOccupee() //const
 {
 	return occupee_; 
 }
 
+/****************************************************************************
+ * Description: Fonction qui effacera les commandes de la table et la rendera valide pour de nouveau client
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Table::libererTable()
 {
-	//delete[] commande_; ------------> mark: je pense que c juste la deuxieme affaire on va delete la liste mais qu elle aille rien pour quand les prochain client vont mettre des affaire dedans
+	
 	for (unsigned int i = 0; i < capacite_; i++)
-		commande_[i] = nullptr; // felix: qu est ce qu il faut effacer --------> mark: check en haut
+		commande_[i] = nullptr; 
 	occupee_ = false;
 }
 
+/****************************************************************************
+ * Description: Fonction qui rend la table occcupee
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Table::placerClient()
 {
 	occupee_ = true;
 }
 
+/****************************************************************************
+ * Description: Fonction qui met le id a une valeur voulu
+ * in: id
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Table::setId(int id)
 {
 	id_ = id;
 }
 
+/****************************************************************************
+ * Description: Fonction qui recoit un plat et qui la place dans une liste de plat commander pour une table
+ * in: Plat
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Table::commander(Plat* plat)
 {
 	if (nbPlats_ == capacite_) {
@@ -96,6 +142,12 @@ void Table::commander(Plat* plat)
 	
 }
 
+/****************************************************************************
+ * Description: Fonction qui calcul le chiffre d'affaire
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 double Table::getChiffreAffaire()
 {
 	double coutTotal = 0, prixTotal = 0;
@@ -107,6 +159,12 @@ double Table::getChiffreAffaire()
 	return chiffreAffaire;
 }
 
+/****************************************************************************
+ * Description: Fonction qui affiche le contenu de la class table
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Table::afficher()
 {
 	if (occupee_) {
@@ -120,7 +178,12 @@ void Table::afficher()
 
 }
 
-
+/****************************************************************************
+ * Description: Destructeur des variables de la class table
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 Table::~Table()
 {
 	for (unsigned int i = 0; i < capacite_ ; i++)

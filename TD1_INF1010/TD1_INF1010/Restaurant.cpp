@@ -1,6 +1,18 @@
+/****************************************************************************
+ * Fichier: Restaurant.cpp
+ * Auteur: Mark Weber-Sadler et Felix Dumont
+ * Date: 4 fevrier 2019
+ * Description: Implémentation de la classe Restaurant
+ ****************************************************************************/
+
 #include "Restaurant.h"
 
-
+/****************************************************************************
+ * Description: Constructeur par default
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 Restaurant::Restaurant() 
 {
 	nom_ = new string("inconnu");
@@ -18,6 +30,12 @@ Restaurant::Restaurant()
 	
 }
 
+/***************************************************************************
+ * Description: Constucteur avec l'aide de parametre
+ * in: fichier, nom et moment
+ * out:
+ * in \ out:
+ ****************************************************************************/
 Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment) 
 {
 	
@@ -37,12 +55,12 @@ Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment
 		menuSoir_ = new Menu();
 		break;
 	case 2:
-		menuSoir_ = new Menu(fichier, moment); //il entre ici
+		menuSoir_ = new Menu(fichier, moment); 
 		menuMatin_ = new Menu();
 		menuMidi_ = new Menu();
 		break;
 	}
-	//menuSoir_->afficher(); //test
+	
 	tables_ = new Table*[INTTABLES];
 	for (int i = 0; i < INTTABLES; i++) {
 		tables_[i] = nullptr;
@@ -52,21 +70,45 @@ Restaurant::Restaurant(const string& fichier, const string& nom, TypeMenu moment
 	lireTable(fichier);
 }
 
+/***************************************************************************
+ * Description: Fonction qui set la variable au moment voulu
+ * in: moment
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Restaurant::setMoment(TypeMenu moment) {
 
 	momentJournee_ = moment;
 }
 
+/***************************************************************************
+ * Description: Fonction qui retourne le nomdu restaurant
+ * in: 
+ * out:
+ * in \ out:
+ ****************************************************************************/
 string Restaurant::getNom(){//const
 
 	return *nom_;
 }
 
+/***************************************************************************
+ * Description: Fonction qui retourne le moment de la journee
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 TypeMenu Restaurant::getMoment() const{
 
 	return momentJournee_;
 }
 
+/***************************************************************************
+ * Description: Fonction qui lira le document et cree un variable table
+ * in: fichier
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Restaurant::lireTable(const string & fichier){
 	ifstream ficLire (fichier);
 	string nom;
@@ -88,6 +130,12 @@ void Restaurant::lireTable(const string & fichier){
 	ficLire.close();
 }
 
+/***************************************************************************
+ * Description: Fonction qui ajoute une table dans la liste de table
+ * in: id et nbPlaces
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Restaurant::ajouterTable(int id, int nbPlaces){
 	if(capaciteTables_==nbTables_){
 		capaciteTables_ *= 2;
@@ -100,11 +148,17 @@ void Restaurant::ajouterTable(int id, int nbPlaces){
 		
 	}
 	Table* table= new Table(id,nbPlaces);
-	tables_[nbTables_] = table; /////////// ici je cree une table et je vais le mettre dans une liste mais la fonction ne va pas la delete apres????
+	tables_[nbTables_] = table; 
 	
 }
 
-void Restaurant::libererTable(int id){//////////// dans la fonction j assume que la liste est toujours assez grande 
+/***************************************************************************
+ * Description: Fonction qui libere un table et calcul le chiffre d'affaire
+ * in: id
+ * out:
+ * in \ out:
+ ****************************************************************************/
+void Restaurant::libererTable(int id){
 	int placeListeTable;
 
 	for (int i = 0; i < nbTables_; i++) {
@@ -119,6 +173,12 @@ void Restaurant::libererTable(int id){//////////// dans la fonction j assume que
 	
 }
 
+/***************************************************************************
+ * Description: Fonction pour commander des plats
+ * in: nom et idTable
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Restaurant::commanderPlat(const string & nom, int idTable){
 	int placeListeTable;
 
@@ -145,10 +205,12 @@ void Restaurant::commanderPlat(const string & nom, int idTable){
 }
 
 
-
-
-
-
+/***************************************************************************
+ * Description: Fonction pour placer les clients a une table
+ * in: nbClients
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Restaurant::placerClients(int nbClients)
 {
 
@@ -189,21 +251,25 @@ void Restaurant::placerClients(int nbClients)
 		cout << "Erreur: Le client ne pouvait pas etre placer pour une quantite insuffisante de table." << endl;
 }
 
+/***************************************************************************
+ * Description: Fonction pour afficher le restaurant
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 void Restaurant::afficher() const{
 
 	cout << "Le restaurant PolyFood a fait un pofit de: "<< chiffreAffaire_<< "$" <<endl;
 	cout << "Les tables et leur disponibilite: " << endl;
 	for (unsigned int i = 0; i < nbTables_; i++) {
 		
-		cout << "La table numero "<< i + 1<< " est ";//////////// mark: ici pour le numero de la table je ne suis pas sur de mettre le id ou genre la 4ieme table
+		cout << "La table numero "<< i + 1<< " est ";
 		if (tables_[i]->estOccupee()) {
 			cout << "prise." << endl;
 		}
 		else {
 			cout << "libre." << endl;
-			 ////// mark: felix je sais pas comment conjuguer prise
-			//////felix: mark...get goood!!!!! pas de s car cest une table
-			//
+			 
 		}
 
 
@@ -211,6 +277,12 @@ void Restaurant::afficher() const{
 
 }
 
+/***************************************************************************
+ * Description: Destructeur de la classe Restaurant
+ * in:
+ * out:
+ * in \ out:
+ ****************************************************************************/
 Restaurant::~Restaurant()
 {
 	delete nom_;

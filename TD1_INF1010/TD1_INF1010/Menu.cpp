@@ -1,20 +1,18 @@
 /****************************************************************************
- * Fichier: Point.h
- * Auteur: Georges Abou-Khalil
- * Date: 2 sept 2008
- * Mise a jour : 11 mai 2011
- * Description: Implémentation de la classe Point
+ * Fichier: Menu.cpp
+ * Auteur: Mark Weber-Sadler et Felix Dumont
+ * Date: 4 fevrier 2019
+ * Description: Implémentation de la classe Menu
  ****************************************************************************/
 
 #include "Menu.h"
 
 
  /****************************************************************************
-  * Fonction: Point::Point
-  * Description: Constructeur par défaut
-  * Paramètres: aucun
-  * Retour: aucun
-  * 
+  * Description: Constructeur par default
+  * in: 
+  * out: 
+  * in \ out: 
   ****************************************************************************/
 Menu::Menu() 
 {
@@ -26,6 +24,12 @@ Menu::Menu()
 		listePlats_[i] =  nullptr;
 }
 
+/****************************************************************************
+  * Description: Constructeur avec parametre
+  * in: fichier et type
+  * out: 
+  * in \ out:
+  ****************************************************************************/
 Menu::Menu(string fichier, TypeMenu type)
 {
 	type_ = type;
@@ -40,12 +44,23 @@ Menu::Menu(string fichier, TypeMenu type)
 	lireMenu(fichier);
 }
 
-
+/****************************************************************************
+  * Description: Retourne le nombre de plats dans la liste
+  * in:
+  * out:
+  * in \ out:
+  ****************************************************************************/
 int Menu::getNbPlats() const
 {
 	return nbPlats_;
 }
 
+/****************************************************************************
+  * Description: Afficher tous les plats du menu
+  * in:
+  * out:
+  * in \ out:
+  ****************************************************************************/
 void Menu::afficher() const
 {
 	cout << "Voici ce qu'il y a sur le menu: " << endl;
@@ -53,6 +68,12 @@ void Menu::afficher() const
 		listePlats_[i]->afficher();
 }
 
+/****************************************************************************
+  * Description: Fonction qui trouve le un plat avec l'aide d'un nom dans la liste et retourne le pointeur du plat
+  * in: nom
+  * out:
+  * in \ out:
+  ****************************************************************************/
 Plat* Menu::trouverPlat(const string& nom) const
 {
 	
@@ -63,6 +84,12 @@ Plat* Menu::trouverPlat(const string& nom) const
 	return nullptr;
 }
 
+/****************************************************************************
+  * Description: Fonction qui ajoute un plat dans la liste du menu avec l'aide d'un plat
+  * in: plat
+  * out:
+  * in \ out:
+  ****************************************************************************/
 void Menu::ajouterPlat(Plat& plat)
 {
 	if (nbPlats_ == capacite_) {
@@ -79,12 +106,24 @@ void Menu::ajouterPlat(Plat& plat)
 	nbPlats_++;	
 }
 
+/****************************************************************************
+  * Description: Ajoute un plat a la liste en creant un variable plat avec l'aide de prametre
+  * in: nom, montant et cout
+  * out:
+  * in \ out:
+  ****************************************************************************/
 void Menu::ajouterPlat(const string& nom, double montant, double cout)
 {
 	Plat* plat= new Plat(nom, montant, cout);
 	ajouterPlat(*plat);
 }
 
+/****************************************************************************
+  * Description: Fonction qui le lit un fichier et cree un menu
+  * in: fichier
+  * out:
+  * in \ out:
+  ****************************************************************************/
 bool Menu::lireMenu(string& fichier)
 {
 	ifstream ficLire(fichier);
@@ -164,6 +203,12 @@ bool Menu::lireMenu(string& fichier)
 	return lectureEffectuee;
 }
 
+/****************************************************************************
+  * Description: Fonction qui suprime toutes les vriables
+  * in:
+  * out:
+  * in \ out:
+  ****************************************************************************/
 Menu::~Menu()
 {
 
