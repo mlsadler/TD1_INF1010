@@ -124,7 +124,7 @@ void Menu::ajouterPlat(const string& nom, double montant, double cout)
   * out:
   * in \ out:
   ****************************************************************************/
-bool Menu::lireMenu(string& fichier)
+bool Menu::lireMenu(const string& fichier)
 {
 	ifstream ficLire(fichier);
 	string nom, type = "type";

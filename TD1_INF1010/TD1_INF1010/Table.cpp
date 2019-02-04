@@ -73,7 +73,7 @@ int Table::getNbPlaces() const
  * out:
  * in \ out:
  ****************************************************************************/
-bool Table::estOccupee() //const
+bool Table::estOccupee() const
 {
 	return occupee_; 
 }
@@ -165,7 +165,7 @@ double Table::getChiffreAffaire()
  * out:
  * in \ out:
  ****************************************************************************/
-void Table::afficher()
+void Table::afficher() const
 {
 	if (occupee_) {
 		cout << "La table " << id_ << "a " << nbPlaces_ << "places et elle est occupée."<< endl << "Voici la commande des clients: " << endl;

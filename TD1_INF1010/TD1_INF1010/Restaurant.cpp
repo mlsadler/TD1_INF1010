@@ -87,7 +87,7 @@ void Restaurant::setMoment(TypeMenu moment) {
  * out:
  * in \ out:
  ****************************************************************************/
-string Restaurant::getNom(){//const
+string Restaurant::getNom() const{
 
 	return *nom_;
 }

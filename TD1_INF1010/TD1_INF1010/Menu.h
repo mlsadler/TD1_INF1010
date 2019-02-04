@@ -30,7 +30,7 @@ public:
 	Plat* trouverPlat(const string& nom) const; 
 	void ajouterPlat(Plat & plat); 
 	void ajouterPlat(const string& nom, double montant, double cout); 
-	bool lireMenu(string& fichier); 
+	bool lireMenu(const string& fichier); 
 
 	//destructeur
 	~Menu();
